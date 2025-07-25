@@ -1,0 +1,26 @@
+# Syntax Coloring Map For LX16A-bus
+
+# Datatypes (KEYWORD1)
+LX16A    KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+initialize    KEYWORD2
+setID         KEYWORD2
+move          KEYWORD2
+enableTorque         KEYWORD2
+disableTorque        KEYWORD2
+getPhysicalAngle     KEYWORD2
+getCommandedAngle    KEYWORD2
+setMotorMode    KEYWORD2
+setServoMode    KEYWORD2
+ledPowerOn      KEYWORD2
+ledPowerOff     KEYWORD2
+isMotorMode     KEYWORD2
+isTorqueEnabled KEYWORD2
+isLedPowerOn    KEYWORD2
+getTemp    KEYWORD2
+getVin     KEYWORD2
+
+# Instances (KEYWORD2)
+
+# Constants (LITERAL1)

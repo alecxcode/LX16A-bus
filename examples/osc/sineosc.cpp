@@ -1,7 +1,6 @@
 #include "sineosc.h"
 
-void SineOscillator::start(LX16A& s, float maxA, int numOsc) {
-  servo = &s;
+void SineOscillator::start(float maxA, int numOsc) {
   maxAngle = maxA;
   numOscillations = numOsc;
   x = -M_PI / 2.0;

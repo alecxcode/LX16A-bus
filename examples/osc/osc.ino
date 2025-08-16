@@ -6,8 +6,8 @@
 LX16A motor1(1, Serial);
 LX16A motor2(2, Serial);
 
-SineOscillator osc1;
-SineOscillator osc2;
+SineOscillator osc1(motor1);
+SineOscillator osc2(motor2);
 
 void setup() {
   Serial.begin(115200);
@@ -30,8 +30,8 @@ void loop() {
   osc1.update(ms);
   osc2.update(ms);
   if (!osc1.isRunning() && !osc2.isRunning()) {
-    osc1.start(motor1, oscangle, 2);
-    osc2.start(motor2, oscangle, 2);
+    osc1.start(oscangle, 2);
+    osc2.start(oscangle, 2);
     oscangle -= 90.0;
     if (oscangle <= 0.0) {
       oscangle = 240.0;

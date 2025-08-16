@@ -5,7 +5,9 @@
 
 class SmoothServo {
 public:
-  void start(LX16A& s, float targetAngle);
+  SmoothServo(LX16A& s) : servo(&s) {}
+  
+  void start(float targetAngle);
   void update(unsigned long now);
   bool isRunning();
 

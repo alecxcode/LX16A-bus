@@ -7,7 +7,9 @@
 
 class SineOscillator {
 public:
-  void start(LX16A& s, float maxA, int numOsc);
+  SineOscillator(LX16A& s) : servo(&s) {}
+
+  void start(float maxA, int numOsc);
   void update(unsigned long now);
   bool isRunning();
 

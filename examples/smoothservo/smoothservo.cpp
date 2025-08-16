@@ -1,7 +1,6 @@
 #include "smoothservo.h"
 
-void SmoothServo::start(LX16A& s, float toAngle) {
-  servo = &s;
+void SmoothServo::start(float toAngle) {
   targetAngle = toAngle;
   startAngle = servo->getPhysicalAngle();
   x = 0.0;

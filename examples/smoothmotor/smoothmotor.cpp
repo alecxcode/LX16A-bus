@@ -1,10 +1,7 @@
 #include "smoothmotor.h"
 
-SmoothMotor::SmoothMotor() {}
-
-void SmoothMotor::start(LX16A &s, int16_t tSpeed) {
-  if (!s.isMotorMode()) return;
-  servo = &s;
+void SmoothMotor::start(int16_t tSpeed) {
+  if (!servo->isMotorMode()) return;
   currentSpeed = 0;
   targetSpeed = tSpeed;
   step = (targetSpeed > 0) ? 25 : -25;

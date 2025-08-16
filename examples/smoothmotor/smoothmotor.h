@@ -5,15 +5,15 @@
 
 class SmoothMotor {
 public:
-  SmoothMotor();
+  SmoothMotor(LX16A& s) : servo(&s) {}
 
-  void start(LX16A &servo, int16_t targetSpeed);
+  void start(int16_t targetSpeed);
   void stop();
   void update(unsigned long now);
   bool isRunning() const;
 
 private:
-  LX16A *servo = nullptr;
+  LX16A *servo;
   int16_t currentSpeed = 0;
   int16_t targetSpeed = 0;
   int16_t step = 50;

@@ -5,8 +5,8 @@
 LX16A motor1(1, Serial);
 LX16A motor2(2, Serial);
 
-SmoothServo smove1;
-SmoothServo smove2;
+SmoothServo smove1(motor1);
+SmoothServo smove2(motor2);
 
 void setup() {
   Serial.begin(115200);
@@ -30,12 +30,12 @@ void loop() {
   smove1.update(ms);
   smove2.update(ms);
   if (!smove1.isRunning()) {
-    smove1.start(motor1, targetAngle1);
+    smove1.start(targetAngle1);
     targetAngle1 = (targetAngle1 == 0.0 || targetAngle1 == 240.0) ? 120.0 : (movingFwd1) ? 240.0 : 0.0;
     movingFwd1 = (targetAngle1 == 120.0) ? movingFwd1 : !movingFwd1;
   }
   if (!smove2.isRunning() && ms-msini > 500) {
-    smove2.start(motor2, targetAngle2);
+    smove2.start(targetAngle2);
     targetAngle2 = (targetAngle2 == 0.0 || targetAngle2 == 240.0) ? 120.0 : (movingFwd2) ? 240.0 : 0.0;
     movingFwd2 = (targetAngle2 == 120.0) ? movingFwd2 : !movingFwd2;
   }

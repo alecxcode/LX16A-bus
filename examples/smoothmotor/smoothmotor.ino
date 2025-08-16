@@ -6,8 +6,8 @@ LX16A motor1(1, Serial);
 LX16A motor2(2, Serial);
 
 // Smooth motor mode operation:
-SmoothMotor smotor1;
-SmoothMotor smotor2;
+SmoothMotor smotor1(motor1);
+SmoothMotor smotor2(motor2);
 
 void setup() {
   Serial.begin(115200);
@@ -21,8 +21,8 @@ void setup() {
   Serial.print("Motor Mode: ");
   Serial.print(motor1.isMotorMode() ? "true " : "false ");
   Serial.println(motor2.isMotorMode() ? "true " : "false ");
-  smotor1.start(motor1, 1000);
-  smotor2.start(motor2, 1000);
+  smotor1.start(1000);
+  smotor2.start(1000);
 }
 
 unsigned long msini = millis();
@@ -44,7 +44,7 @@ void loop() {
     delay(2000);
     msini = millis();
     speed = -speed;
-    smotor1.start(motor1, speed);
-    smotor2.start(motor2, speed);
+    smotor1.start(speed);
+    smotor2.start(speed);
   }
 }

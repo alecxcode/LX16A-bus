@@ -18,9 +18,9 @@ It basically contains `LX16A` class and logic that are very similar to the [PyLX
 - Could be used directly without BusLinker but read (get) methods will not work
 - External power for the motor
 
-<!--TODO: ## Video Tutorial with Electronics
+## Video Tutorial with Electronics
 
-[![Video Tutorial](https://img.youtube.com/vi/VIDEO/mqdefault.jpg)](https://www.youtube.com/watch?v=VIDEO) -->
+[![Video Tutorial](https://img.youtube.com/vi/hftOepSBWFY/mqdefault.jpg)](https://www.youtube.com/watch?v=hftOepSBWFY)
 
 ## Installation
 

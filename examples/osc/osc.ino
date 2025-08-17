@@ -1,4 +1,3 @@
-// Smooth Bus Servos
 #include <Arduino.h>
 #include "LX16A-bus.h"
 #include "sineosc.h"
@@ -6,6 +5,7 @@
 LX16A motor1(1, Serial);
 LX16A motor2(2, Serial);
 
+// Smooth Oscillators
 SineOscillator osc1(motor1);
 SineOscillator osc2(motor2);
 

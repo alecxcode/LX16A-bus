@@ -1,14 +1,7 @@
-/*
-  Morse.h - Library for LX-16A bus servomortors with BusLinker.
-  Created by Aleksandr Vankov, July 20, 2025.
-  Released into the public domain.
-*/
-
 #ifndef LX16A_H
 #define LX16A_H
 
 #include <Arduino.h>
-#include <SoftwareSerial.h>
 
 class LX16A {
 public:

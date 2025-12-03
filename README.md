@@ -37,8 +37,17 @@ Initialize the servo and read some of its parameters:
 Set the ID of the servo:  
 `void setID(uint8_t new_id);`
 
-Rotate to the given angle (for LX-16A from 0 to 240):  
+Get the ID of the servo:  
+`uint8_t getID(bool pollHardware);`
+
+Rotate to the given angle (for LX-16A from 0 to 240; the `wait` argument delays the move util the `moveStart()` call):  
 `void move(float angle, uint16_t time = 0, bool wait = false);`
+
+Start delayed move:  
+`void moveStart();`
+
+Stop current move:  
+`void moveStop();`
 
 Enable torque so that it does not relax (prevents moving due to gravity or other forces):  
 `void enableTorque();`

@@ -9,13 +9,15 @@ LX16A::LX16A(uint8_t id, HardwareSerial &serial) {
   commandedAngle = -1.0;
 }
 
-void LX16A::initialize(long baud) {
+void LX16A::initialize(unsigned long baud) {
   if (!Serial) { 
     serialx->begin(baud);
   }
-  motorMode = isMotorMode(true);
-  torqueEnabled = isTorqueEnabled(true);
-  ledPowered = isLedPowerOn(true);
+  if (motorid < 254) {
+    motorMode = isMotorMode(true);
+    torqueEnabled = isTorqueEnabled(true);
+    ledPowered = isLedPowerOn(true);
+  }
 }
 
 uint8_t LX16A::checksum(uint8_t *packet, uint8_t length) {
@@ -61,6 +63,22 @@ void LX16A::setID(uint8_t newmotorid) {
   motorid = newmotorid;
 }
 
+uint8_t LX16A::getID(bool pollHardware) {
+  if (!pollHardware) {
+    return motorid;
+  }
+
+  uint8_t packet[] = { motorid, 3, 14 };
+  sendPacket(packet, sizeof(packet));
+
+  uint8_t response[10];
+  if (!readPacket(response, 1)) {
+    return 0; 
+  }
+
+  return response[5];
+}
+
 void LX16A::move(float angle, uint16_t time, bool wait) {
   uint16_t angleVal = toServoRange(angle);
   uint8_t angleLow = angleVal & 0xFF;
@@ -73,6 +91,19 @@ void LX16A::move(float angle, uint16_t time, bool wait) {
     angleLow, angleHigh,
     timeLow, timeHigh
   };
+
+  sendPacket(packet, sizeof(packet));
+  commandedAngle = angle;
+}
+
+void LX16A::moveStart() {
+  uint8_t packet[] = { motorid, 3, 11 };
+
+  sendPacket(packet, sizeof(packet));
+}
+
+void LX16A::moveStop() {
+  uint8_t packet[] = { motorid, 3, 12 };
 
   sendPacket(packet, sizeof(packet));
 }
@@ -96,7 +127,7 @@ float LX16A::getPhysicalAngle() {
   uint8_t response[10];
   if (!readPacket(response, 2)) return -1;
   uint16_t raw = response[5] | (response[6] << 8);
-  if (raw > abs(32767)) raw = 0;
+  if (raw > 32767) raw = 0;
   
   return fromServoRange(raw);
 }
@@ -196,7 +227,7 @@ int LX16A::getTemp() {
 
   uint8_t response[10];
   if (!readPacket(response, 1)) {
-    return -1; 
+    return 0; 
   }
 
   return response[5];
@@ -208,7 +239,7 @@ int LX16A::getVin() {
 
   uint8_t response[10];
   if (!readPacket(response, 2)) {
-    return -1;
+    return 0;
   }
 
   return response[5] | (response[6] << 8);

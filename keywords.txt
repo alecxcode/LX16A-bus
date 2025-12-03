@@ -6,7 +6,10 @@ LX16A    KEYWORD1
 # Methods and Functions (KEYWORD2)
 initialize    KEYWORD2
 setID         KEYWORD2
+getID         KEYWORD2
 move          KEYWORD2
+moveStart     KEYWORD2
+moveStop      KEYWORD2
 enableTorque         KEYWORD2
 disableTorque        KEYWORD2
 getPhysicalAngle     KEYWORD2

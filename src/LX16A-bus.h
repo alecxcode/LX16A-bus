@@ -6,9 +6,12 @@
 class LX16A {
 public:
   LX16A(uint8_t id, HardwareSerial &serial);
-  void initialize(long baud = 115200);
+  void initialize(unsigned long baud = 115200);
   void setID(uint8_t new_id);
+  uint8_t getID(bool pollHardware = false);
   void move(float angle, uint16_t time = 0, bool wait = false);
+  void moveStart();
+  void moveStop();
   void enableTorque();
   void disableTorque();
   float getPhysicalAngle();
